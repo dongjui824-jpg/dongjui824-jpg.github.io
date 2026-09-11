@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이동주 강사 & AX 컨설팅 전문 홈페이지</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; }
+    </style>
+<style>
+:root{--navy:#09162b;--gold:#b99a5b;--ink:#172033;--line:#e7eaf0}
+html{scroll-behavior:smooth}body{font-family:'Pretendard',sans-serif;background:#f7f8fa;color:var(--ink)}
+h1,h2,h3{letter-spacing:-.04em}.hero-grid{background:radial-gradient(circle at 82% 18%,rgba(185,154,91,.18),transparent 26%),linear-gradient(135deg,#071226,#10213d 58%,#0b1730)}
+.hero-stat{border-left:1px solid rgba(255,255,255,.18)}.premium-card{background:#fff;border:1px solid var(--line);box-shadow:0 14px 40px rgba(15,23,42,.055);transition:.25s}.premium-card:hover{transform:translateY(-3px);box-shadow:0 20px 50px rgba(15,23,42,.09)}
+.section-label{color:var(--gold);font-size:.72rem;font-weight:800;letter-spacing:.18em}.gold-line{width:54px;height:2px;background:var(--gold);margin:0 auto 20px}.career-item{position:relative}.career-item:before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--gold),transparent)}.btn-gold{background:var(--gold);color:#fff}.btn-gold:hover{background:#a8894d}
+@media(max-width:768px){.hero-stat{border-left:0;border-top:1px solid rgba(255,255,255,.18);padding-top:14px}}
+</style></head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/30">
+                    DJ
+                </div>
+                <div>
+                    <span class="text-lg font-bold tracking-tight text-slate-900 block">동주 AX에이전시</span>
+                    <span class="text-xs text-blue-600 font-semibold tracking-wider uppercase">AI 교육 · AX 실무 컨설팅</span>
+                </div>
+            </div>
+            
+            <button id="menuBtn" class="md:hidden p-2 text-slate-700" aria-label="메뉴 열기"><i class="fa-solid fa-bars text-xl"></i></button>
+<nav id="mainNav" class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#about" class="hover:text-blue-600 transition-colors">소개</a>
+                <a href="#curriculum" class="hover:text-blue-600 transition-colors">교육 과정</a>
+                <a href="#career" class="hover:text-blue-600 transition-colors">주요 경력</a>
+                <a href="#contact" class="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-all shadow-md shadow-blue-600/20">강의 문의</a>
+            </nav>
+        </div>
+        <div id="mobileNav" class="hidden md:hidden border-t border-slate-200 bg-white px-4 py-4">
+            <a href="#about" class="block py-3 text-slate-700">소개</a>
+            <a href="#curriculum" class="block py-3 text-slate-700">교육 과정</a>
+            <a href="#career" class="block py-3 text-slate-700">주요 경력</a>
+            <a href="#contact" class="block py-3 font-semibold text-blue-600">강의 문의</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden py-20 lg:py-32 hero-grid text-white">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-semibold mb-6">
+                    <i class="fa-solid fa-sparkles"></i> AI 전환(AX) 전문가 이동주
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                    AI를 배우는 것을 넘어,<br><span class="text-[#d8c28f]">현장에서 바로 쓰는 AX 실무</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-300 mb-10 leading-relaxed">
+                    기업과 조직의 업무에 AI를 연결하고, 구성원이 실제 업무에서 활용할 수 있도록 교육과 실무 적용을 함께 설계합니다.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="px-8 py-4 rounded-2xl btn-gold font-bold transition-all shadow-lg flex items-center gap-2">
+                        <span>강의 및 컨설팅 문의</span>
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                    <a href="#curriculum" class="px-8 py-4 rounded-2xl bg-white/5 hover:bg-white/10 text-white font-bold border border-white/15 transition-all">
+                        커리큘럼 살펴보기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4">왜 동주 AX에이전시인가?</h2>
+                <p class="text-slate-600">경영과 실무를 이해하는 관점에서, AI를 실제 업무 변화로 연결합니다.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-3xl premium-card group">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-2xl mb-6 shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">실무 맞춤형 커리큘럼</h3>
+                    <p class="text-slate-600 leading-relaxed">이론보다 실제 업무 적용에 집중해, 누구나 현장에서 바로 활용할 수 있는 실용적인 AI 활용법을 교육합니다.</p>
+                </div>
+                
+                <div class="p-8 rounded-3xl premium-card group">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-2xl mb-6 shadow-lg shadow-indigo-600/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">외국인 엔지니어 지도 경험</h3>
+                    <p class="text-slate-600 leading-relaxed">부산·통영 등에서 외국인 엔지니어를 장기적으로 지도·교육한 경험을 보유하고 있습니다.</p>
+                </div>
+
+                <div class="p-8 rounded-3xl premium-card group">
+                    <div class="w-14 h-14 rounded-2xl bg-violet-600 text-white flex items-center justify-center text-2xl mb-6 shadow-lg shadow-violet-600/20 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">최신 AI 기술 반영</h3>
+                    <p class="text-slate-600 leading-relaxed">챗GPT, 클로드, 캔바 등 시시각각 변화하는 최신 생성형 AI 툴 트렌드를 발 빠르게 교육에 녹여냅니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section id="curriculum" class="py-24 bg-slate-50 border-y border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4">핵심 실무 과정</h2>
+                <p class="text-slate-600">업무 효율을 극대화하는 대표 맞춤형 교육 프로그램입니다.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Course 1 -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold">COURSE 01</span>
+                            <span class="text-sm font-semibold text-slate-400">실무 중심</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">생성형 AI 프롬프트 엔지니어링</h3>
+                        <p class="text-slate-600 mb-6">챗GPT 및 대형 언어 모델을 활용하여 기획서 작성, 데이터 분석, 아이디어 도출 속도를 10배 높이는 기술</p>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-600 border-t border-slate-100 pt-4">
+                        <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>CRAFT 프레임워크 활용법</li>
+                        <li><i class="fa-solid fa-check text-blue-600 mr-2"></i>비즈니스 문서 자동화 기법</li>
+                    </ul>
+                </div>
+
+                <!-- Course 2 (수정됨) -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold">COURSE 02</span>
+                            <span class="text-sm font-semibold text-slate-400">디자인 & 프레젠테이션</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">캔바로 PPT 활용</h3>
+                        <p class="text-slate-600 mb-6">디자인 감각이 없어도 AI와 캔바를 연동해 시각적으로 압도적인 프레젠테이션 자료를 순식간에 제작하는 법</p>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-600 border-t border-slate-100 pt-4">
+                        <li><i class="fa-solid fa-check text-indigo-600 mr-2"></i>캔바 AI 기능 실무 활용하기</li>
+                        <li><i class="fa-solid fa-check text-indigo-600 mr-2"></i>설득력 있는 기획서 및 PPT 제작</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Section (수정됨) -->
+    <section id="career" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4">대표 강사 주요 경력</h2>
+                <p class="text-slate-600">다양한 현장 경험과 전문적인 지도 이력을 소개합니다.</p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 mt-1 font-bold">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-1">부산·통영 등 외국인 엔지니어 장기지도</h3>
+                        <p class="text-slate-600 text-sm">부산·통영 등에서 외국인 엔지니어를 대상으로 장기적인 지도 및 교육 수행</p>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 mt-1 font-bold">
+                        <i class="fa-solid fa-chalkboard"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-1">공공기관·기업체 생성형 AI 활용 특강</h3>
+                        <p class="text-slate-600 text-sm">임직원 대상 업무 자동화, 프레임워크 기반 프롬프트 엔지니어링 강의 다수 진행</p>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 mt-1 font-bold">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-1">AI 웹 프로토타입 및 교육 콘텐츠 기획</h3>
+                        <p class="text-slate-600 text-sm">생성형 AI 툴을 활용한 에듀테크 앱 기획, 웹 서비스 프로토타이핑 컨설팅 수행</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / CTA Section -->
+    <section id="contact" class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">귀사의 업무에 맞는 AX 교육을 설계하겠습니다</h2>
+            <p class="text-slate-400 mb-10 text-lg">기업·기관 출강, 임직원 교육, 산학협력 프로그램, AI 실무 컨설팅 등 목적에 맞춰 제안드립니다.</p>
+            
+            <div class="max-w-xl mx-auto mb-8 grid sm:grid-cols-2 gap-4">
+                <a href="tel:01045865827" class="rounded-2xl border border-white/10 bg-white/5 p-5 hover:bg-white/10 transition">
+                    <div class="text-xs text-slate-400 mb-1">PHONE</div>
+                    <div class="font-bold">010-4586-5827</div>
+                    <div class="text-sm text-slate-400 mt-1">전화 상담</div>
+                </a>
+                <a href="mailto:dongjui824@gmail.com?subject=동주 AX에이전시 교육 문의" class="rounded-2xl border border-white/10 bg-white/5 p-5 hover:bg-white/10 transition">
+                    <div class="text-xs text-slate-400 mb-1">E-MAIL</div>
+                    <div class="font-bold">이메일 상담</div>
+                    <div class="text-sm text-slate-400 mt-1">dongjui824@gmail.com</div>
+                </a>
+            </div>
+            <div class="bg-slate-800 p-8 sm:p-10 rounded-3xl border border-slate-700 max-w-xl mx-auto text-left shadow-2xl">
+                <form id="contactForm" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">성함 / 단체명</label>
+                        <input id="clientName" name="name" type="text" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="홍길동 (OO기업 / OO기관)">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">연락처 / 이메일</label>
+                        <input id="clientContact" name="contact" type="text" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="010-0000-0000 / email@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">문의 내용</label>
+                        <textarea id="clientMessage" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none" placeholder="원하시는 강의 주제나 일정 등을 적어주세요."></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-lg shadow-blue-600/30">
+                        교육·컨설팅 문의하기
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-slate-950 text-slate-500 text-sm border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <span class="text-slate-300 font-bold">동주 AX에이전시</span>
+                <span>|</span>
+                <span>AI 교육 및 컨설팅 전문</span>
+            </div>
+            <p>&copy; 2026 이동주. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileNav.classList.add('hidden'));
+    });
+  }
+
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('clientName').value.trim();
+      const contact = document.getElementById('clientContact').value.trim();
+      const message = document.getElementById('clientMessage').value.trim();
+
+      if (!name || !contact || !message) {
+        alert('성함/단체명, 연락처, 문의 내용을 모두 입력해주세요.');
+        return;
+      }
+
+      const subject = encodeURIComponent('[동주 AX에이전시] 교육·컨설팅 문의');
+      const body = encodeURIComponent(
+        '성함/단체명: ' + name + '\n' +
+        '연락처/이메일: ' + contact + '\n\n' +
+        '문의 내용:\n' + message
+      );
+
+      // 서버 없이도 작동하는 기본 문의 전송 방식: 사용자의 이메일 앱을 엽니다.
+      window.location.href = 'mailto:dongjui824@gmail.com?subject=' + subject + '&body=' + body;
+    });
+  }
+});
+</script>
+
+</body>
+</html>
