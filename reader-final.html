@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#15231b">
+  <title>나만의 인생 즐기기 · 제2의 봄날</title>
+  <style>
+    *{box-sizing:border-box}html,body{height:100%;margin:0}body{overflow:hidden;background:radial-gradient(circle at 50% 20%,#32483b,#15231b 60%,#0a100d);color:#fff;font-family:"Noto Sans KR",system-ui,sans-serif}
+    .app{height:100%;display:grid;grid-template-rows:auto 1fr auto}.topbar,.bottombar{display:flex;align-items:center;gap:12px;padding:12px 18px;background:rgba(8,14,11,.88);backdrop-filter:blur(12px);z-index:20}.topbar{border-bottom:1px solid rgba(255,255,255,.12);flex-wrap:wrap}.bottombar{justify-content:center;border-top:1px solid rgba(255,255,255,.12);flex-wrap:wrap}
+    .brand{min-width:0;flex:1}.brand b{display:block;font-family:Georgia,"Noto Serif KR",serif;color:#f4dbab;font-size:1.05rem}.brand span{display:block;color:#aab6ae;font-size:.76rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    button,a.btn{border:1px solid rgba(255,255,255,.2);background:#24362b;color:#fff;border-radius:999px;min-height:42px;padding:0 16px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}button:hover,a.btn:hover,button.active{background:#b88a48;color:#12140f}.icon{width:42px;padding:0;font-size:1.1rem}.stage{position:relative;display:grid;place-items:center;min-height:0;padding:18px;overflow:hidden}.book-wrap{width:min(1120px,96vw);height:min(74vh,760px);display:grid;place-items:center}.book{filter:drop-shadow(0 28px 28px rgba(0,0,0,.46))}
+    .page{background:#fff;color:#182019;overflow:hidden;position:relative}.page canvas,.page img{display:block;width:100%;height:100%;object-fit:contain;background:#fff}.page.loading:after{content:"페이지를 준비하고 있습니다";position:absolute;inset:0;display:grid;place-items:center;color:#526056;background:#f8f5ec;font-size:.85rem}.page-number{position:absolute;right:10px;bottom:7px;background:rgba(255,255,255,.78);color:#5f665f;border-radius:12px;padding:2px 7px;font-size:.68rem;pointer-events:none}.cover{background:#1d2c22}.cover img{object-fit:cover}.status{min-width:116px;text-align:center;color:#e8dcc2;font-variant-numeric:tabular-nums}.hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(5,10,7,.7);padding:6px 13px;border-radius:999px;color:#d8dfda;font-size:.72rem;pointer-events:none;transition:.4s}.hint.hide{opacity:0}
+    .error{display:none;max-width:620px;margin:auto;text-align:center;padding:30px;background:#fff;color:#222;border-radius:12px}.error.show{display:block}.error a{color:#684514;font-weight:700}.audio-tools{display:flex;align-items:center;gap:8px}.audio-tools label{font-size:.72rem;color:#cbd4ce}.audio-tools select{border:1px solid rgba(255,255,255,.2);background:#16221b;color:#fff;border-radius:999px;padding:7px 10px}.audio-tools input{width:84px;accent-color:#d7b16b}.narration-state{font-size:.72rem;color:#f1d9a2;min-width:92px}
+    @media(max-width:640px){.topbar{padding:8px 10px;gap:7px}.brand{flex-basis:100%}.brand b{font-size:.9rem}.brand span{font-size:.68rem}.topbar .btn{display:none}.stage{padding:6px}.book-wrap{width:100vw;height:calc(100vh - 190px)}.bottombar{padding:7px 8px;gap:6px}.bottombar button{min-height:38px;padding:0 11px}.hint{bottom:4px}.audio-tools{width:100%;justify-content:center}.audio-tools label{display:none}.audio-tools input{width:70px}.narration-state{width:100%;text-align:center;min-height:16px}}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand"><b>나만의 인생 즐기기 · 제2의 봄날</b><span>이동주 지음 · 큰 글씨 108페이지</span></div>
+      <a class="btn" href="./index.html#ebook">홈페이지</a>
+      <a class="btn" href="./ebook.pdf" download>PDF 저장</a>
+      <button id="readBtn" aria-label="낭독 시작">▶ 낭독</button>
+      <button class="icon" id="stopBtn" aria-label="낭독 정지">■</button>
+      <button id="musicBtn" aria-label="배경음악 켜기">♫ 음악</button>
+      <button class="icon" id="fullscreen" aria-label="전체 화면">⛶</button>
+    </header>
+    <section class="stage">
+      <div class="book-wrap"><div id="book" class="book" aria-label="전자책"></div></div>
+      <div id="hint" class="hint">책장을 누르거나 좌우로 밀어 넘겨보세요</div>
+      <div id="error" class="error"><h2>전자책을 불러오지 못했습니다.</h2><p>인터넷 연결을 확인하거나 아래 링크로 PDF를 열어주세요.</p><a href="./ebook.pdf" target="_blank">PDF로 바로 보기</a></div>
+    </section>
+    <footer class="bottombar">
+      <button id="prev" aria-label="이전 페이지">‹ 이전</button>
+      <div id="status" class="status">준비 중…</div>
+      <button id="next" aria-label="다음 페이지">다음 ›</button>
+      <div class="audio-tools">
+        <label for="speed">낭독 속도</label><select id="speed"><option value="0.8">느리게</option><option value="0.95" selected>편안하게</option><option value="1.1">빠르게</option></select>
+        <label for="volume">음악</label><input id="volume" type="range" min="0" max="0.18" step="0.01" value="0.06" aria-label="배경음악 음량">
+      </div>
+      <div id="narrationState" class="narration-state">낭독 준비</div>
+    </footer>
+  </main>
+  <audio id="bgm" src="./reading-bgm.mp3" preload="metadata" loop></audio>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    const bookEl=document.getElementById("book"),statusEl=document.getElementById("status"),hint=document.getElementById("hint");
+    let pdf,flip,total=0;const rendered=new Set(),rendering=new Map(),textCache=new Map();
+    const synth=window.speechSynthesis,bgm=document.getElementById("bgm"),readBtn=document.getElementById("readBtn"),musicBtn=document.getElementById("musicBtn"),narrationState=document.getElementById("narrationState");
+    let reading=false,paused=false,session=0,chosenVoice=null;
+
+    async function renderPage(pageNo){
+      if(pageNo<2||pageNo>total||rendered.has(pageNo))return;
+      if(rendering.has(pageNo))return rendering.get(pageNo);
+      const job=(async()=>{
+        const host=document.querySelector(`[data-pdf-page="${pageNo}"]`);if(!host)return;
+        const page=await pdf.getPage(pageNo);const raw=page.getViewport({scale:1});
+        const target=Math.min(920,Math.max(520,host.clientWidth*1.65));const viewport=page.getViewport({scale:target/raw.width});
+        const canvas=host.querySelector("canvas"),ctx=canvas.getContext("2d",{alpha:false});canvas.width=Math.floor(viewport.width);canvas.height=Math.floor(viewport.height);
+        await page.render({canvasContext:ctx,viewport}).promise;host.classList.remove("loading");rendered.add(pageNo);rendering.delete(pageNo);
+      })().catch(()=>rendering.delete(pageNo));rendering.set(pageNo,job);return job;
+    }
+
+    function warmAround(index){
+      const shown=index+1;for(let p=Math.max(2,shown-2);p<=Math.min(total,shown+4);p++)renderPage(p);
+    }
+
+    function selectVoice(){
+      const voices=synth.getVoices(),ko=voices.filter(v=>v.lang&&v.lang.toLowerCase().startsWith("ko"));
+      chosenVoice=ko.find(v=>/female|yuna|sunhi|heami|유나|선희/i.test(v.name))||ko[0]||null;
+    }
+    selectVoice();if("onvoiceschanged" in synth)synth.onvoiceschanged=selectVoice;
+
+    let visibleIndex=0,pendingNarrationToken=null;
+
+    async function pageText(index){
+      if(index===0)return "나만의 인생 즐기기. 제2의 봄날. 두려움 없이 돛을 올린 50대의 유쾌한 항해일지. 이동주 지음.";
+      const pageNo=index+1;if(textCache.has(pageNo))return textCache.get(pageNo);
+      const page=await pdf.getPage(pageNo),content=await page.getTextContent();
+      let text=content.items.map(i=>i.str).join(" ").replace(/\s+/g," ").trim();
+      text=text
+        .replace(/나만의\s*인생\s*즐기기[\s|｜·:：\-]*이동주(?:\s*자서전)?/gi,"")
+        .replace(/나만의\s*인생즐기기[\s|｜·:：\-]*이동주(?:\s*자서전)?/gi,"")
+        .replace(/나\s*만\s*의\s*인\s*생\s*즐\s*기\s*기/gi,"")
+        .replace(/이\s*동\s*주(?:\s*자\s*서\s*전)?/gi,"")
+        .replace(/^\d+\s*/,"").replace(/\s+\d{1,3}\s*$/,"").replace(/\s+/g," ").trim();
+      textCache.set(pageNo,text);return text;
+    }
+
+    function chunks(text){
+      const sentences=text.match(/[^.!?。！？]+[.!?。！？]?/g)||[text],out=[];let part="";
+      for(const s of sentences){if((part+s).length>260&&part){out.push(part);part=s}else part+=s}if(part)out.push(part);return out;
+    }
+
+    async function narrate(index,token){
+      if(!reading||token!==session)return;
+      const text=await pageText(index);if(!text){advanceAfterReading(token);return;}
+      const parts=chunks(text);let i=0;narrationState.textContent=`${index+1}페이지 낭독 중`;
+      const speakNext=()=>{
+        if(!reading||token!==session)return;
+        if(i>=parts.length){advanceAfterReading(token);return;}
+        const u=new SpeechSynthesisUtterance(parts[i++]);u.lang="ko-KR";u.rate=Number(document.getElementById("speed").value);u.pitch=1;u.volume=1;if(chosenVoice)u.voice=chosenVoice;u.onend=speakNext;u.onerror=()=>{if(reading)speakNext()};synth.speak(u);
+      };speakNext();
+    }
+
+    function advanceAfterReading(token){
+      if(!reading||token!==session)return;const current=flip.getCurrentPageIndex();
+      if(current>=total-1){stopReading();narrationState.textContent="마지막 페이지입니다";return;}
+      pendingNarrationToken=token;flip.flipNext();
+    }
+
+    function startReading(){
+      if(paused){synth.resume();paused=false;reading=true;readBtn.textContent="Ⅱ 일시정지";narrationState.textContent="낭독 계속";return;}
+      session++;synth.cancel();reading=true;paused=false;readBtn.textContent="Ⅱ 일시정지";readBtn.classList.add("active");bgm.volume=Number(document.getElementById("volume").value);bgm.play().then(()=>{musicBtn.classList.add("active");musicBtn.textContent="♫ 음악 켜짐"}).catch(()=>{});narrate(visibleIndex,session);
+    }
+    function pauseReading(){synth.pause();paused=true;reading=false;readBtn.textContent="▶ 계속";readBtn.classList.remove("active");narrationState.textContent="낭독 일시정지";}
+    function stopReading(){session++;pendingNarrationToken=null;synth.cancel();reading=false;paused=false;readBtn.textContent="▶ 낭독";readBtn.classList.remove("active");narrationState.textContent="낭독 정지";}
+    function movePage(direction){const resume=reading;session++;pendingNarrationToken=null;synth.cancel();if(resume)pendingNarrationToken=++session;direction<0?flip.flipPrev():flip.flipNext();}
+
+    async function init(){
+      try{
+        pdf=await pdfjsLib.getDocument("./ebook.pdf?v=final-20260919").promise;total=pdf.numPages;
+        const cover=document.createElement("div");cover.className="page cover";cover.setAttribute("data-density","hard");cover.innerHTML='<img src="./ebook-cover.jpg" alt="나만의 인생 즐기기 제2의 봄날 표지">';bookEl.appendChild(cover);
+        for(let n=2;n<=total;n++){
+          const el=document.createElement("div");el.className="page loading";el.dataset.pdfPage=n;el.innerHTML=`<canvas aria-label="${n}페이지"></canvas><span class="page-number">${n}</span>`;bookEl.appendChild(el);
+        }
+        flip=new St.PageFlip(bookEl,{width:560,height:790,size:"stretch",minWidth:280,maxWidth:620,minHeight:396,maxHeight:875,showCover:true,mobileScrollSupport:false,maxShadowOpacity:.45,usePortrait:true,autoSize:true});
+        flip.loadFromHTML(document.querySelectorAll(".page"));
+        const update=e=>{const i=e.data??flip.getCurrentPageIndex();visibleIndex=i;statusEl.textContent=`${Math.min(i+1,total)} / ${total}`;warmAround(i);hint.classList.add("hide");if(pendingNarrationToken!==null){const token=pendingNarrationToken;pendingNarrationToken=null;setTimeout(()=>narrate(visibleIndex,token),180)}};
+        flip.on("flip",update);flip.on("changeOrientation",()=>warmAround(flip.getCurrentPageIndex()));statusEl.textContent=`1 / ${total}`;warmAround(0);
+        document.getElementById("prev").onclick=()=>movePage(-1);document.getElementById("next").onclick=()=>movePage(1);
+      }catch(err){console.error(err);bookEl.style.display="none";document.getElementById("error").classList.add("show");statusEl.textContent="PDF 열기 실패";}
+    }
+    readBtn.onclick=()=>paused?startReading():reading?pauseReading():startReading();document.getElementById("stopBtn").onclick=stopReading;
+    musicBtn.onclick=()=>{if(bgm.paused){bgm.volume=Number(document.getElementById("volume").value);bgm.play().then(()=>{musicBtn.classList.add("active");musicBtn.textContent="♫ 음악 켜짐"})}else{bgm.pause();musicBtn.classList.remove("active");musicBtn.textContent="♫ 음악"}};
+    document.getElementById("volume").oninput=e=>bgm.volume=Number(e.target.value);
+    document.getElementById("fullscreen").onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.();
+    document.addEventListener("keydown",e=>{if(!flip)return;if(e.key==="ArrowLeft")movePage(-1);if(e.key==="ArrowRight")movePage(1);if(e.code==="Space"){e.preventDefault();readBtn.click()}});
+    window.addEventListener("beforeunload",()=>{synth.cancel();bgm.pause()});
+    init();
+  </script>
+</body>
+</html>
